@@ -6,10 +6,10 @@ sealed class Tree<out A> : Functor<A> {
     abstract override fun <B> fmap(f: (A) -> B): Tree<B>
 }
 
-object EmptyTree : Tree<Nothing>() {
+object EmptyTree : Tree<kotlin.Nothing>() {
     override fun toString(): String = "EmptyTree"
 
-    override fun <B> fmap(f: (Nothing) -> B): Tree<B> = EmptyTree
+    override fun <B> fmap(f: (kotlin.Nothing) -> B): Tree<B> = EmptyTree
 }
 
 data class Node<out A>(val value: A, val leftTree: Tree<A>, val rightTree: Tree<A>) : Tree<A>() {
