@@ -1,6 +1,5 @@
 package functor
 
-import applicativefunctor.AJust
 import curry.curried
 
 sealed class Maybe<out A> : Functor<A> {
