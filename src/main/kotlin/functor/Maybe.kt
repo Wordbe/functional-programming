@@ -1,5 +1,8 @@
 package functor
 
+import applicativefunctor.AJust
+import curry.curried
+
 sealed class Maybe<out A> : Functor<A> {
     abstract override fun toString(): String
 
@@ -25,4 +28,10 @@ fun <A> Maybe.Companion.pure(value: A) = Just(value)
 infix fun <A, B> Maybe<(A) -> B>.apply(f: Maybe<A>): Maybe<B> = when (this) {
     is Just -> f.fmap(this.value)
     is Nothing -> Nothing
+}
+
+fun main() {
+    println(Maybe.pure({ x: Int, y : Int -> x * y}.curried())
+            apply Just(10)
+            apply Just(20))
 }
