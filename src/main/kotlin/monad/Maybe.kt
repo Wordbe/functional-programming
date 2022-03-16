@@ -34,6 +34,12 @@ infix fun <A, B> Maybe<(A) -> B>.apply(f: Maybe<A>): Maybe<B> = when (this) {
     is Nothing -> Nothing
 }
 
+infix fun <F, G, R> ((F) -> Monad<R>).compose(g: (G) -> Monad<F>): (G) -> Monad<R> {
+    return { gInput: G -> g(gInput) flatMap this }
+}
+
+
+
 fun main() {
     println(Just(10).fmap { it + 10 })
     println(Nothing.fmap { x: Int -> x + 10 })
