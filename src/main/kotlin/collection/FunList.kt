@@ -39,3 +39,8 @@ fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
     FunList.Nil -> acc
     is FunList.Cons -> f(head, tail.foldRight(acc, f))
 }
+
+fun reverse(str: String): String = when {
+    str.isEmpty() -> ""
+    else -> str.last() + reverse(str.dropLast(1))
+}
